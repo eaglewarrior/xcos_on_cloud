@@ -14280,19 +14280,27 @@ function MATDIAG() {
         this.typ = parseFloat((arguments[0]["typ"]))
         if(this.typ == 1){
             this.function_name = "mat_diag"
-            this.x.model.intyp = new ScilabDouble([1])
-            this.x.model.outtyp = new ScilabDouble([1])
+            //this.x.model.intyp = new ScilabDouble([1])
+            //this.x.model.outtyp = new ScilabDouble([1])
+            this.ot=1
+            this.it=1
         }
         else if(this.typ == 2){
             this.function_name = "matz_diag"
-            this.x.model.intyp = new ScilabDouble([2])
-            this.x.model.outtyp = new ScilabDouble([2])
+            //this.x.model.intyp = new ScilabDouble([2])
+            //this.x.model.outtyp = new ScilabDouble([2])
+            this.ot=2
+            this.it=2
         }
         else{
                 alert("Datatype is not supported");
                 MATDIAG.get();
             }
+        this.in = [-1,1]
+        this.out = [-1,-1]
         this.x.model.sim = list(new ScilabString([this.function_name]), new ScilabDouble([4]));
+        
+        var io = set_io(this.x.model,this.x.graphics,list(new ScilabDouble([this.in]),new ScilabDouble([this.it])),list(new ScilabDouble([this.out]),new ScilabDouble([this.ot])),[],[]);
         this.x.graphics.exprs = label
         var exprs = new ScilabString([this.typ])
         this.x.graphics.exprs=exprs
